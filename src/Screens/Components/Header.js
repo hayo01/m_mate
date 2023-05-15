@@ -1,70 +1,80 @@
-import { Image, StyleSheet, Text, View, useWindowDimensions } from "react-native";
+import { Image, StyleSheet, View, useWindowDimensions } from "react-native";
 import React from "react";
-import { ColorTheme } from "../../Libs/Constant/Colors";
 import { TextInput } from "react-native-paper";
+import { ColorTheme } from "~/Libs/Constant/Colors";
 
-const Header = () => {
-    const { colors } = ColorTheme;
-    const { height } = useWindowDimensions();
+const Header = ({ style, headerHeight }) => {
+  const { colors } = ColorTheme;
 
-    const [focus, setFocus] = React.useState(false);
+  const { height } = useWindowDimensions();
+  const logoWidth = headerHeight * (height < 800 ? 1.3 : 1.5);
+  const logoHeight = headerHeight * (height < 800 ? 0.26 : 0.3);
 
-    return (
-        <View
-            style={{
-                backgroundColor: colors.primary,
-                height: height * 0.065,
-                padding: 10,
-                flexDirection: "row",
-                alignItems: "center",
-                justifyContent: "space-between",
-            }}
-        >
-            <View style={{ flex: 1, alignItems: "center" }}>
-                <Image
-                    source={require("../../../assets/header_logo.png")}
-                    style={{ width: 76, height: 14 }}
-                />
-            </View>
+  return (
+    <View
+      style={{
+        backgroundColor: colors.primary,
+        height: headerHeight,
+        padding: 10,
+        flexDirection: "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        ...style,
+      }}
+    >
+      <View style={{ flex: 1, alignItems: "center", marginRight: 5 }}>
+        <Image
+          source={require("@assets/header_logo.png")}
+          style={{ width: logoWidth, height: logoHeight }}
+          resizeMode="stretch"
+        />
+      </View>
 
-            <View style={{ flex: 3, alignItems: "center", paddingHorizontal: 10 }}>
-                <TextInput
-                    style={{
-                        backgroundColor: colors.white,
-                        width: 221,
-                        // height: 30,
-                        borderRadius: 5,
-                        borderWidth: !focus ? 1 : 1.5,
-                        borderColor: !focus ? colors.black : colors.black,
-                    }}
-                    dense={true}
-                    underlineColor="transparent"
-                    activeUnderlineColor="transparent"
-                    cursorColor={colors.black}
-                    onFocus={() => setFocus(true)}
-                    left={
-                        <TextInput.Icon
-                            icon={() => (
-                                <Image
-                                    source={require("../../../assets/icons/search.png")}
-                                    style={{ width: 16, height: 16 }}
-                                />
-                            )}
-                        />
-                    }
-                />
-            </View>
+      <View style={styles.searchTextInputView}>
+        <Image
+          source={require("@assets/icons/search.png")}
+          style={{ width: 16, height: 16, marginRight: -25, zIndex: 1 }}
+        />
+        <TextInput
+          style={[
+            styles.searchTextInput,
+            {
+              backgroundColor: colors.white,
+              borderColor: colors.black,
+            },
+          ]}
+          dense={true}
+          underlineColor="transparent"
+          activeUnderlineColor="transparent"
+          cursorColor={colors.black}
+        />
+      </View>
 
-            <View style={{ flex: 0.4, alignItems: "center" }}>
-                <Image
-                    source={require("../../../assets/icons/bell.png")}
-                    style={{ width: 22, height: 22 }}
-                />
-            </View>
-        </View>
-    );
+      <View style={{ flex: 0.2, marginLeft: -5, marginRight: 10 }}>
+        <Image source={require("@assets/icons/bell.png")} style={{ width: 22, height: 22 }} />
+      </View>
+    </View>
+  );
 };
 
 export default Header;
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  searchTextInputView: {
+    flex: 2.5,
+    flexDirection: "row",
+    alignItems: "center",
+    paddingHorizontal: 10,
+  },
+  searchTextInput: {
+    width: "100%",
+    maxHeight: 35,
+    justifyContent: "center",
+    alignContent: "center",
+    borderRadius: 8,
+    borderTopStartRadius: 8,
+    borderTopEndRadius: 8,
+    borderWidth: 1,
+    paddingLeft: 15,
+  },
+});

@@ -8,13 +8,7 @@ export default function App() {
     const { colors } = ColorTheme;
 
     return (
-        <View
-            style={{
-                flex: 1,
-                marginTop: StatusBar.currentHeight,
-                backgroundColor: colors.white,
-            }}
-        >
+        <View style={{ flex: 1, marginTop: StatusBar.currentHeight }}>
             <NavigationContainer>
                 <StackNavigation />
             </NavigationContainer>

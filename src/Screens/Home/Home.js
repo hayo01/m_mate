@@ -1,49 +1,53 @@
-import {
-    FlatList,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    View,
-    useWindowDimensions,
-} from "react-native";
+import { FlatList, StyleSheet, View, useWindowDimensions } from "react-native";
 import React from "react";
-import MainLayout from "../Components/MainLayout";
+
 import { ColorTheme } from "../../Libs/Constant/Colors";
-import Header from "../Components/Header";
+import MainLayout from "../Components/MainLayout";
+import Header from "@components/Header";
 import Categories from "./components/Categories";
 import Product from "../Components/Product";
 import { sampleProducts } from "../../../sampleProducts";
 
 const Home = () => {
-    const { colors } = ColorTheme;
-    const { height, width } = useWindowDimensions();
+  const { colors } = ColorTheme;
+  const { height, width } = useWindowDimensions();
+  const headerHeight = height * (height < 800 ? 0.08 : 0.063);
+  const categoryHeight = height * (height < 800 ? 0.065 : 0.06);
+  const productViewHeight = height - (headerHeight + categoryHeight);
+  const productSize = height < 800 ? 140 : 160;
 
-    const [activeTab, setActiveTab] = React.useState(0);
+  const numColumns = Math.floor((width - 30) / productSize);
 
-    const numColumns = Math.floor((width - 30) / (160 + 30));
+  const [activeTab, setActiveTab] = React.useState(0);
+  const [filteredProducts, setProducts] = React.useState(sampleProducts);
 
-    return (
-        <MainLayout style={{ backgroundColor: colors.white }}>
-            <Header />
+  const filterProducts = activeTab => {
+    return sampleProducts.filter(product => product.category === activeTab);
+  };
+  React.useEffect(() => {
+    if (activeTab === 0) return setProducts(sampleProducts);
 
-            <Categories activeTab={activeTab} setActiveTab={setActiveTab} />
+    setProducts(filterProducts(activeTab));
+  }, [activeTab]);
 
-            <View style={{ paddingHorizontal: 20, height: height * 0.8 }}>
-                <FlatList
-                    data={sampleProducts}
-                    showsVerticalScrollIndicator={false}
-                    numColumns={numColumns}
-                    columnWrapperStyle={{ justifyContent: "space-between" }}
-                    style={{ paddingTop: 20 }}
-                    renderItem={({ item, index }) => {
-                        //TODO: category 별로 걸러줘야 함
+  return (
+    <MainLayout style={{ backgroundColor: colors.white }}>
+      <Header headerHeight={headerHeight} />
 
-                        return <Product item={item} />;
-                    }}
-                />
-            </View>
-        </MainLayout>
-    );
+      <Categories activeTab={activeTab} setActiveTab={setActiveTab} height={categoryHeight} />
+
+      <View style={{ paddingHorizontal: 15, paddingBottom: 10, height: productViewHeight }}>
+        <FlatList
+          data={filteredProducts}
+          showsVerticalScrollIndicator={false}
+          numColumns={numColumns}
+          columnWrapperStyle={{ justifyContent: "space-between" }}
+          style={{ paddingTop: 20 }}
+          renderItem={({ item, index }) => <Product item={item} productSize={productSize} />}
+        />
+      </View>
+    </MainLayout>
+  );
 };
 
 export default Home;
