@@ -1,6 +1,6 @@
 import { FlatList, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
-import { ColorTheme } from "../../../Libs/Constant/Colors";
+import { ColorTheme } from "@libs/Constant/Colors";
 
 const categories = [
   { index: 0, name: "전체" },

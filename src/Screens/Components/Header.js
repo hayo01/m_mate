@@ -1,7 +1,7 @@
 import { Image, StyleSheet, View, useWindowDimensions } from "react-native";
 import React from "react";
 import { TextInput } from "react-native-paper";
-import { ColorTheme } from "~/Libs/Constant/Colors";
+import { ColorTheme } from "@libs/Constant/Colors";
 
 const Header = ({ style, headerHeight }) => {
   const { colors } = ColorTheme;

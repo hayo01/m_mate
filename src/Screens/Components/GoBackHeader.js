@@ -11,7 +11,7 @@ import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 
-const GoBackHeader = ({}) => {
+const GoBackHeader = ({ title }) => {
   const { height } = useWindowDimensions();
   const headerHeight = height * (height < 800 ? 0.08 : 0.063);
 
@@ -35,7 +35,7 @@ const GoBackHeader = ({}) => {
       </TouchableOpacity>
 
       <View style={{ flex: 1, alignItems: "center" }}>
-        <Text style={{ fontSize: 16 }}>상품상세</Text>
+        <Text style={{ fontSize: 16 }}>{title ?? ""}</Text>
       </View>
 
       <View style={{ flexDirection: "row", flex: 1, justifyContent: "flex-end" }}>

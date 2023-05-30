@@ -1,10 +1,10 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import React from "react";
 import { useNavigation } from "@react-navigation/native";
-import { ColorTheme } from "../../Libs/Constant/Colors";
-import { getCurrency } from "../../Libs/CommonUtils";
+import { ColorTheme } from "@libs/Constant/Colors";
+import { getCurrency } from "@libs/CommonUtils";
 
-const Product = ({ item, productSize }) => {
+const Product = ({ item, productWidth }) => {
   const { colors } = ColorTheme;
   const navigation = useNavigation();
 
@@ -19,7 +19,11 @@ const Product = ({ item, productSize }) => {
     >
       <Image
         source={item.image}
-        style={{ borderRadius: 10, width: productSize ?? 160, height: productSize ?? 160 }}
+        style={{
+          borderRadius: 10,
+          width: productWidth ?? 160,
+          height: productWidth ?? 160,
+        }}
       />
 
       <View style={{ paddingVertical: 15 }}>

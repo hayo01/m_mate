@@ -1,13 +1,12 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View, useWindowDimensions } from "react-native";
 import React from "react";
-
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
-import { ColorTheme } from "../../Libs/Constant/Colors";
-import MainLayout from "../Components/MainLayout";
-import { getCurrency } from "../../Libs/CommonUtils";
-import GoBackHeader from "../Components/GoBackHeader";
+import { ColorTheme } from "@libs/Constant/Colors";
+import { getCurrency } from "@libs/CommonUtils";
+import GoBackHeader from "@components/GoBackHeader";
+import MainLayout from "@components/MainLayout";
 
 const ProductDetail = ({ route }) => {
   const { height, width } = useWindowDimensions();
@@ -22,7 +21,7 @@ const ProductDetail = ({ route }) => {
 
   return (
     <MainLayout style={{ backgroundColor: colors.white }}>
-      <GoBackHeader />
+      <GoBackHeader title={"상품상세"} />
 
       <Image
         source={item.image}
@@ -40,7 +39,7 @@ const ProductDetail = ({ route }) => {
           styles.flexRow,
           {
             justifyContent: "space-between",
-            height: height * 0.06,
+            height: height * (height < 800 ? 0.065 : 0.06),
             borderBottomColor: colors.grayLine,
             borderBottomWidth: 1,
             paddingHorizontal: 10,
