@@ -1,28 +1,28 @@
 {
-    "expo": {
-        "name": "m-mate",
-        "slug": "m-mate",
-        "version": "1.0.0",
-        "orientation": "portrait",
-        "icon": "./assets/splash_logo.png",
-        "userInterfaceStyle": "light",
-        "splash": {
-            "image": "./assets/splash_logo.png",
-            "resizeMode": "contain",
-            "backgroundColor": "#2AC1BC"
-        },
-        "assetBundlePatterns": ["**/*"],
-        "ios": {
-            "supportsTablet": true
-        },
-        "android": {
-            "adaptiveIcon": {
-                "foregroundImage": "./assets/splash_logo.png",
-                "backgroundColor": "#2AC1BC"
-            }
-        },
-        "web": {
-            "favicon": "./assets/splash_logo.png"
-        }
+  "expo": {
+    "name": "m-mate",
+    "slug": "m-mate",
+    "version": "1.0.0",
+    "orientation": "portrait",
+    "icon": "./assets/splash_logo.png",
+    "userInterfaceStyle": "light",
+    "splash": {
+      "image": "./assets/splash_logo.png",
+      "resizeMode": "contain",
+      "backgroundColor": "#2AC1BC"
+    },
+    "assetBundlePatterns": ["**/*"],
+    "ios": {
+      "supportsTablet": true
+    },
+    "android": {
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/splash_logo.png",
+        "backgroundColor": "#2AC1BC"
+      }
+    },
+    "web": {
+      "favicon": "./assets/splash_logo.png"
     }
+  }
 }
