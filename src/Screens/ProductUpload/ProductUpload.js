@@ -13,12 +13,15 @@ import { ColorTheme } from "@libs/Constant/Colors";
 import MainLayout from "@components/MainLayout";
 import GoBackHeader from "@components/GoBackHeader";
 import ProductInfoInput from "./components/ProductInfoInput";
+import CategoryBottomSheet from "./components/CategoryBottomSheet";
 
 const ProductUpload = ({ route }) => {
   const { colors } = ColorTheme;
   const { height } = useWindowDimensions();
 
-  const productPhotoUri = route?.params.photo;
+  const productPhotoUri = route?.params?.photo ?? null;
+
+  const [value, setValue] = React.useState(null);
 
   return (
     <MainLayout style={{ backgroundColor: colors.white }}>
@@ -26,26 +29,30 @@ const ProductUpload = ({ route }) => {
         <GoBackHeader title={"상품등록"} />
       </View>
 
-      <View style={{ flex: 0.85 }}>
+      <View style={{ flex: 0.9 }}>
         <ScrollView
           style={{ paddingHorizontal: 20, paddingVertical: 5 }}
           contentContainerStyle={{ alignItems: "center", paddingBottom: 15 }}
           showsVerticalScrollIndicator={false}
         >
-          <Image
-            source={{ uri: productPhotoUri }}
-            style={{ width: "100%", height: 330, borderRadius: 10, marginBottom: 10 }}
-          />
+          {productPhotoUri && (
+            <Image
+              source={{ uri: productPhotoUri }}
+              style={{ width: "100%", height: 330, borderRadius: 10, marginBottom: 10 }}
+            />
+          )}
 
           <ProductInfoInput label={"위치"} />
           <ProductInfoInput label={"제품명"} />
-          <ProductInfoInput label={"카테고리"} />
+
+          <CategoryBottomSheet value={value} setValue={setValue} />
+
           <ProductInfoInput label={"가격"} />
           <ProductInfoInput label={"할인가격"} />
         </ScrollView>
       </View>
 
-      <View style={{ flex: height < 800 ? 0.065 : 0.075, justifyContent: "flex-end" }}>
+      <View style={{ flex: height < 800 ? 0.07 : 0.075, justifyContent: "flex-end" }}>
         <TouchableOpacity
           style={{
             backgroundColor: colors.primary,

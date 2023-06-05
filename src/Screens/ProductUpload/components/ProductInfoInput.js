@@ -12,8 +12,9 @@ const ProductInfoInput = ({ label }) => {
       <Text style={styles.emphasisFont}>{label}</Text>
       <TextInput
         mode="outlined"
-        style={{ backgroundColor: "transparent" }}
+        outlineStyle={{ backgroundColor: "transparent", borderRadius: 10, borderColor: "#DDDDDD" }}
         activeOutlineColor={colors.primary}
+        contentStyle={{ fontSize: 14 }}
       />
     </View>
   );

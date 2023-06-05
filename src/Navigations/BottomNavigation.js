@@ -121,7 +121,7 @@ const BottomNavigation = () => {
       />
       <Tab.Screen
         name="전체보기"
-        component={Home}
+        component={ProductUpload}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image

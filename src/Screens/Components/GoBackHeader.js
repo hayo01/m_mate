@@ -39,7 +39,7 @@ const GoBackHeader = ({ title }) => {
       </View>
 
       <View style={{ flexDirection: "row", flex: 1, justifyContent: "flex-end" }}>
-        <Pressable onPress={() => navigation.navigate("Home")} style={{ zIndex: 1 }}>
+        <Pressable onPress={() => navigation.navigate("Bottom")} style={{ zIndex: 1 }}>
           <Image
             source={require("@assets/icons/home.png")}
             style={{ width: 20, height: 20, marginRight: 15 }}
