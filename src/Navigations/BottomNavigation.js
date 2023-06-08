@@ -4,7 +4,6 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
 import { ColorTheme } from "@libs/Constant/Colors";
 import Home from "@screens/Home/Home";
-import ProductUpload from "@screens/ProductUpload/ProductUpload";
 import CameraScreen from "@screens/ProductUpload/CameraScreen";
 
 const Tab = createBottomTabNavigator();
@@ -121,7 +120,7 @@ const BottomNavigation = () => {
       />
       <Tab.Screen
         name="전체보기"
-        component={ProductUpload}
+        component={Home}
         options={{
           tabBarIcon: ({ focused }) => (
             <Image

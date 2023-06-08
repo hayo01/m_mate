@@ -3,6 +3,7 @@ import React from "react";
 import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 
 import { ColorTheme } from "@libs/Constant/Colors";
+import EmptyProductPage from "@components/EmptyProductPage";
 import MainLayout from "@components/MainLayout";
 import Header from "@components/Header";
 import Product from "@components/Product";
@@ -40,6 +41,7 @@ const Home = () => {
 
         <Categories activeTab={activeTab} setActiveTab={setActiveTab} height={categoryHeight} />
       </View>
+
       <View
         style={{
           flex: height < 800 ? 0.85 : 0.855,
@@ -47,14 +49,18 @@ const Home = () => {
           paddingHorizontal: productViewPaddingHorizontal,
         }}
       >
-        <FlatList
-          data={filteredProducts}
-          showsVerticalScrollIndicator={false}
-          numColumns={numColumns}
-          columnWrapperStyle={{ justifyContent: "space-between" }}
-          style={{ paddingTop: 15 }}
-          renderItem={({ item, index }) => <Product item={item} productWidth={productWidth} />}
-        />
+        {filteredProducts.length === 0 ? (
+          <EmptyProductPage />
+        ) : (
+          <FlatList
+            data={filteredProducts}
+            showsVerticalScrollIndicator={false}
+            numColumns={numColumns}
+            columnWrapperStyle={{ justifyContent: "space-between" }}
+            style={{ paddingTop: 15 }}
+            renderItem={({ item, index }) => <Product item={item} productWidth={productWidth} />}
+          />
+        )}
       </View>
     </MainLayout>
   );
